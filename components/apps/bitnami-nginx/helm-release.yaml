@@ -1,0 +1,9 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: bitnami-nginx
+spec:
+  interval: 10m
+  chartRef:
+    kind: OCIRepository
+    name: bitnami-nginx

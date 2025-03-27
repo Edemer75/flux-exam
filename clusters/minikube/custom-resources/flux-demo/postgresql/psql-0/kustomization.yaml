@@ -1,38 +1,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - ../../../../../../components/apps/bitnami-postgresql
-patches:
-  - path: helm-release.yaml
-    target:
-      kind: HelmRelease
-  - path: chart.yaml
-    target:
-      kind: OCIRepository
-
-  - target:
-      kind: HelmRelease
-      group: helm.toolkit.fluxcd.io
-      version: v2
-      name: bitnami-postgresql
-    patch: |-
-      - op: replace
-        path: /metadata/name
-        value: psql-0
-      - op: replace
-        path: /spec/chartRef/name
-        value: psql-0
-      - op: add
-        path: /spec/values/fullnameOverride
-        value: psql-0
-  - target:
-      kind: OCIRepository
-      group: source.toolkit.fluxcd.io
-      version: v1beta2
-      name: bitnami-postgresql
-    patch: |-
-      - op: replace
-        path: /metadata/name
-        value: psql-0
+  - ../../../../../../components/apps/bitnami-postgresql/preconfigured
 
 namespace: flux-demo

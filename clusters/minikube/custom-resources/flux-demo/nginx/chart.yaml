@@ -2,7 +2,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: OCIRepository
 metadata:
-  name: bitnami-postgresql
-spec:  
+  name: bitnami-nginx
+spec:
   ref:
-    semver: "16.5.0"
+    semver: "19.0.3"

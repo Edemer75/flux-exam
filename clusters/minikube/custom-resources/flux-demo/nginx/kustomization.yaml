@@ -1,0 +1,35 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../../../../components/apps/bitnami-nginx
+patches:
+  - path: helm-release.yaml
+    target:
+      kind: HelmRelease
+  - path: chart.yaml
+    target:
+      kind: OCIRepository
+
+  - target:
+      kind: HelmRelease
+      group: helm.toolkit.fluxcd.io
+      version: v2
+      name: bitnami-nginx
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: nginx-demo
+      - op: replace
+        path: /spec/chartRef/name
+        value: nginx-demo
+  - target:
+      kind: OCIRepository
+      group: source.toolkit.fluxcd.io
+      version: v1beta2
+      name: bitnami-nginx
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: nginx-demo
+
+namespace: flux-demo
