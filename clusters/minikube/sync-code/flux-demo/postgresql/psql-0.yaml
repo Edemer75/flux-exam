@@ -1,0 +1,14 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: psql-0
+  namespace: flux-demo
+spec:
+  interval: 30s
+  path: ./clusters/minikube/custom-resources/flux-demo/postgresql/psql-0
+  prune: false
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system

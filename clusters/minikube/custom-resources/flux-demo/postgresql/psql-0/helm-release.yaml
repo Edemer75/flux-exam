@@ -1,0 +1,19 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: bitnami-postgresql
+spec:
+  interval: 10m
+  values:
+    replicas: 1
+    auth:
+      username: "admin"
+      password: "admin123"
+    primary:
+      resources:
+        requests:
+          cpu: 250m
+          memory: 250Mi
+        limits:
+          cpu: 250m
+          memory: 250Mi
